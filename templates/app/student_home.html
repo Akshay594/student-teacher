@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for teacher in teachers %}
+  {{ teacher.user.get_full_name }}
+{% endfor %}
+{% endblock %}

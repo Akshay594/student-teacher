@@ -1,24 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
+
+class User(AbstractUser):
+    is_teacher = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
 
 class Student(models.Model):
-    name = models.CharField(max_length=200)
-    grade = models.CharField(max_length=10)
-    roll_no = models.IntegerField(blank=False)
-
-    class Meta:
-        ordering = ['roll_no']
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.user}'
 
 class Teacher(models.Model):
-    name = models.CharField(max_length=200)
-    subject = models.CharField(max_length=200)
-    students = models.ManyToManyField(Student, related_name='students')
-
-    class Meta:
-        ordering = ['name']
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    students = models.ManyToManyField(Student, related_name='teachers')
 
     def __str__(self):
-        return self.name
+        return f'{self.user}'
