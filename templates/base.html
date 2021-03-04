@@ -28,13 +28,13 @@
                   <a class="dropdown-item" href="#">My account</a>
                   <a class="dropdown-item" href="#">Change password</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                  <a class="dropdown-item" href="{% url 'app:logout' %}">Log out</a>
                 </div>
               </li>
             </ul>
           {% else %}
             <form class="form-inline ml-auto">
-              <a href="#" class="btn btn-outline-secondary">Log in</a>
+              <a href="{% url 'app:login' %}" class="btn btn-outline-secondary">Log in</a>
               <a href="{% url 'app:student_signup' %}" class="btn btn-primary ml-2">Sign up as Student</a>
               <a href="{% url 'app:teacher_signup' %}" class="btn btn-primary ml-2">Sign up as Teacher</a>
 
