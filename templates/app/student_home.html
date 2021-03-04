@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for teacher in teachers %}
-  {{ teacher.user.get_full_name }}
-{% endfor %}
+<div class='container-fluid mt-5'>
+    <div class='row'>
+        {% for teacher in teachers %}
+        <div class='col-xs-12 col-md-4 col-sm-2 gray'>
+
+          <div class="card" style="width: 18rem;">
+            <img src="" class="card-img-top" alt="{{ teacher.user.get_full_name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ teacher.user.get_full_name }}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-success">Add Teacher</a>
+            </div>
+          </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

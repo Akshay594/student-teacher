@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'app',
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +127,4 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'app.User'
+LOGOUT_REDIRECT_URL = 'app:student_home'
