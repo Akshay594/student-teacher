@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.db import transaction
-from .models import User,Student,Teacher
+from .models import User,Student,Teacher, Profile
+
 
 class StudentSignUpForm(UserCreationForm):
     first_name = forms.CharField(required=True)
@@ -41,3 +42,18 @@ class TeacherSignUpForm(UserCreationForm):
         teacher = Teacher.objects.create(user=user)
         teacher.save()
         return user
+
+
+
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']

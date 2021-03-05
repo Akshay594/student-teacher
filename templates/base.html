@@ -11,24 +11,36 @@
   <body>
     {% block body %}
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark {% if request.user.is_teacher %}bg-dark{% else %}bg-info{% endif %}">
       <div class="container">
-        <a class="navbar-brand" href="">Django Boards</a>
+        <a class="navbar-brand" {% if request.user.is_teacher %}href="{% url 'app:teacher_home' %}"{% else %}href="{% url 'app:student_home' %}"{% endif %}>Django School</a>
+
+        {% if request.user.is_student %}
+        <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-student' %}">Your Teachers</a>
+        {% elif request.user.is_teacher %}
+        <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-teacher' %}">Your Students</a>
+        {% endif %}
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainMenu">
           {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
+              <li>
+                <img src="{{ request.user.profile.image.url }}" alt="{{ request.user.get_full_name }}" width=40 height=40>
+              </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ user.username }}
+                
+                <a class="nav-link dropdown-toggle btn btn-sm btn-dark" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ request.user.get_full_name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                  <a class="dropdown-item" href="#">My account</a>
-                  <a class="dropdown-item" href="#">Change password</a>
+                  <a class="dropdown-item" href="{% url 'app:profile' %}">My account</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'app:logout' %}">Log out</a>
+                  <a class="dropdown-item btn" href="{% url 'app:delete_confirm' %}" style="color: red;">Delete Profile</a>
+
                 </div>
               </li>
             </ul>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Are you sure you want to delete your account?</h1>
+{% if request.user.is_teacher %}
+    <a class="btn btn-lg btn-success" href="{% url 'app:teacher_home' %}">Go Back Now</a>
+    <a class="btn btn-lg btn-danger" href="{% url 'app:delete' request.user.username %}">Delete Now?</a>
+{% else %}
+
+<a class="btn btn-lg btn-success" href="{% url 'app:student_home' %}">Go Back Now</a>
+<a class="btn btn-lg btn-danger" href="{% url 'app:delete' request.user.username %}">Delete Now?</a>
+
+{% endif %}
+{% endblock %}

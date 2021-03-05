@@ -7,11 +7,22 @@
         <div class='col-xs-12 col-md-4 col-sm-2 gray'>
 
           <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="{{ teacher.user.get_full_name }}">
+            <img src="{{ teacher.user.profile.image.url }}" class="card-img-top" alt="{{ teacher.user.get_full_name }}" height=200 width=40>
             <div class="card-body">
-              <h5 class="card-title">{{ teacher.user.get_full_name }}</h5>
+              <h5 class="card-title"> 
+                <a href="{% url 'app:profile_detail' teacher.user.id %}">{{ teacher.user.get_full_name }}</a>  
+              </h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-success">Add Teacher</a>
+              
+              {% if request.user.is_authenticated %}
+              <form action="{% url 'app:add_teacher' %}" method="POST">
+                {% csrf_token %}
+                    <button type="submit" id="like" name="post_id" value="{{ teacher.id }}" class="btn btn-danger mr-2"><i class="far fa-thumbs-down" aria-hidden="true"> Remove Teacher</i>
+                    <button type="submit" id="like" name="post_id" value="{{ teacher.id }}" class="btn btn-info"> Add Teacher
+                </i>
+                </button>
+              </form>
+              {% endif %}
             </div>
           </div>
 
