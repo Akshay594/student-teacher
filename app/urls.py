@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('data/students/', views.StudentFilteredDetailView.as_view(), name='data-detail-student'),
     
-    path('like', views.add_teacher, name='add_teacher'),
+    path('like/<int:pk>', views.add_teacher, name='add_teacher'),
     path('student/', views.StudentHomeListView.as_view(), name='student_home'),
     path('teacher/', views.TeacherHomeListView.as_view(), name='teacher_home'),
     path('student/register/', views.StudentRegisterView.as_view(), name='student_signup'),
@@ -19,7 +19,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('', views.CustomLoginView.as_view(), name='login'),
 
-    path('profile/<pk>/', views.ProfileDetailView.as_view(), name='profile_detail'),
+    path('profile/student/<pk>/', views.StudentProfileDetailView.as_view(), name='profile_detail_student'),
+    path('profile/teacher/<pk>/', views.TeacherProfileDetailView.as_view(), name='profile_detail_teacher'),
     path('profile/', views.profile, name='profile'),
     path('delete/confirm/', views.delete_confirm, name='delete_confirm'),
     path('delete/<username>/', views.del_user, name='delete'),

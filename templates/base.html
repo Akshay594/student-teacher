@@ -19,6 +19,8 @@
         <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-student' %}">Your Teachers</a>
         {% elif request.user.is_teacher %}
         <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-teacher' %}">Your Students</a>
+        <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-teacher' %}">Exceptional Students</a>
+
         {% endif %}
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">

@@ -19,8 +19,6 @@ class StudentHomeListView(ListView):
               
 
 
-
-
 class TeacherFilteredDetailView(ListView):
     model = Teacher
     template_name = 'app/data.html'
@@ -93,9 +91,26 @@ class CustomLoginView(LoginView):
             return reverse('app:student_home')
 
 
-class ProfileDetailView(DetailView):
+class StudentProfileDetailView(DetailView):
     model = Profile
-    template_name = 'app/profile_detail.html'
+    template_name = 'app/student_profile_detail.html'
+    
+
+
+class TeacherProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'app/teacher_profile_detail.html'
+
+    def get_context_data(self, *args, **kwargs):
+        data = super().get_context_data(**kwargs)
+        p_teacher = get_object_or_404(Profile, id=self.kwargs['pk'])
+        student = Student.objects.get(user=self.request.user)
+        is_liked = False
+        if student.teachers.filter(id=p_teacher.user.teacher.id).exists():
+            is_liked = True
+        data['is_liked'] = is_liked
+        return data
+
 
 
 def delete_confirm(request):
@@ -107,14 +122,14 @@ def del_user(request, username):
     return redirect('/') 
 
 
-def add_teacher(request):
-    teacher = get_object_or_404(Teacher, id=request.POST.get('post_id'))
+def add_teacher(request, pk):
+    teacher = get_object_or_404(Teacher, id=request.POST.get('id'))
     student = Student.objects.get(user=request.user)
     if student.teachers.filter(id=teacher.id).exists():
         student.teachers.remove(teacher)
     else:
         student.teachers.add(teacher)
-    return HttpResponseRedirect('/student/')
+    return redirect(f'/profile/teacher/{pk}')
 
 
 def profile(request):

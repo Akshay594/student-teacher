@@ -13,9 +13,7 @@ class User(AbstractUser):
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    is_star = models.BooleanField(default=False, null=True)
-    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)    
     class Meta:
         ordering = ['-id']
 

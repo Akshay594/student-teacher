@@ -10,7 +10,7 @@
             <img src="{{ student.user.profile.image.url }}" class="card-img-top" alt="{{ student.user.get_full_name }}" height=200 width=40>
             <div class="card-body">
               <h5 class="card-title"> 
-                <a href="{% url 'app:profile_detail' student.user.id %}">{{ student.user.get_full_name }}</a>  
+                <a href="{% url 'app:profile_detail_student' student.user.id %}">{{ student.user.get_full_name }}</a>  
               </h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>

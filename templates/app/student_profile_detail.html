@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='col-xs-12 col-md-4 col-sm-2 gray mt-5'>
+        <div class="card" style="width: 18rem;">
+        <img src="{{ object.user.profile.image.url }}" class="card-img-top" alt="{{ object.user.get_full_name }}" height=200 width=40>
+        <div class="card-body">
+            <h5 class="card-title"> 
+            <a href="{% url 'app:profile_detail_teacher' object.user.id %}">{{ object.user.get_full_name }}</a>  
+            </h5>
+            <p class="card-text">About Section</p>
+        </div>
+        {% if object.user.is_teacher %}
+        <form action="{% url 'app:add_teacher' object.pk %}" method="POST">
+            {% csrf_token %}
+                <button type="submit" id="like" name="id" value="{{ object.user.teacher.id }}" class="btn btn-danger mr-2"><i class="far fa-thumbs-down" aria-hidden="true"> Remove Teacher</i>
+                <button type="submit" id="like" name="id" value="{{ object.user.teacher.id }}" class="btn btn-info"> Add Teacher
+            </i>
+            </button>
+          </form>
+        {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
