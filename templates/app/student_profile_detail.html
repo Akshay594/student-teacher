@@ -6,17 +6,18 @@
         <img src="{{ object.user.profile.image.url }}" class="card-img-top" alt="{{ object.user.get_full_name }}" height=200 width=40>
         <div class="card-body">
             <h5 class="card-title"> 
-            <a href="{% url 'app:profile_detail_teacher' object.user.id %}">{{ object.user.get_full_name }}</a>  
+            <a href="{% url 'app:profile_detail_student' object.user.id %}">{{ object.user.get_full_name }}</a>  
             </h5>
-            <p class="card-text">About Section</p>
+            <p class="card-text">{{ object.user.profile.about }}</p>
         </div>
-        {% if object.user.is_teacher %}
-        <form action="{% url 'app:add_teacher' object.pk %}" method="POST">
+        {% if object.user.is_student %}
+        <form action="{% url 'app:add_star' object.pk %}" method="POST">
             {% csrf_token %}
-                <button type="submit" id="like" name="id" value="{{ object.user.teacher.id }}" class="btn btn-danger mr-2"><i class="far fa-thumbs-down" aria-hidden="true"> Remove Teacher</i>
-                <button type="submit" id="like" name="id" value="{{ object.user.teacher.id }}" class="btn btn-info"> Add Teacher
-            </i>
-            </button>
+                {% if is_liked %}
+                <button type="submit" id="like" name="id" value="{{ object.user.student.id }}" class="btn mr-2" style="background-color:white;"><i class="fa fa-star" style="font-size:48px;color:gold"></i></button>
+                {% else %}
+                <button type="submit" id="like" name="id" value="{{ object.user.student.id }}" class="btn" style="background-color: white;"> <i class="fa fa-star-o" style="font-size:36px"></i></button>
+                {% endif %}
           </form>
         {% endif %}
         </div>

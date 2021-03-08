@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>{% block title %}Django School{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Peralta" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     {% block stylesheet %}{% endblock %}  <!-- HERE -->
@@ -19,7 +20,7 @@
         <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-student' %}">Your Teachers</a>
         {% elif request.user.is_teacher %}
         <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-teacher' %}">Your Students</a>
-        <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-teacher' %}">Exceptional Students</a>
+        <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:star_students' %}">Exceptional Students</a>
 
         {% endif %}
 

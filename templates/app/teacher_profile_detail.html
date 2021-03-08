@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ teacher }} {{ student }}
     <div class='col-xs-12 col-md-4 col-sm-2 gray mt-5'>
         <div class="card" style="width: 18rem;">
         <img src="{{ object.user.profile.image.url }}" class="card-img-top" alt="{{ object.user.get_full_name }}" height=200 width=40>
@@ -9,10 +8,10 @@
             <h5 class="card-title"> 
             <a href="{% url 'app:profile_detail_student' object.user.id %}">{{ object.user.get_full_name }}</a>  
             </h5>
-            <p class="card-text">About Section</p>
+            <p class="card-text">{{ object.user.profile.about }}</p>
         </div>
         {% if object.user.is_teacher %}
-        <form action="{% url 'app:add_teacher' object.pk %}" method="POST">
+        <form action="{% url 'app:add_favourite' object.pk %}" method="POST">
             {% csrf_token %}
                 {% if is_liked %}
                 <button type="submit" id="like" name="id" value="{{ object.user.teacher.id }}" class="btn btn-danger mr-2"><i class="far fa-thumbs-down" aria-hidden="true"> Remove Teacher</i>

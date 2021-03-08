@@ -12,7 +12,7 @@
               <h5 class="card-title"> 
                 <a href="{% url 'app:profile_detail_teacher' teacher.user.id %}">{{ teacher.user.get_full_name }}</a>  
               </h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">{{ teacher.user.profile.about }}</p>
             </div>
           </div>
 

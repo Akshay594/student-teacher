@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'app',
+    'crispy_forms',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -131,3 +132,4 @@ LOGOUT_REDIRECT_URL = 'app:login'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
