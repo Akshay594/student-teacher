@@ -22,7 +22,7 @@ def index(request):
         according to the input requests by user.
     """
     if request.user.is_authenticated and request.user.is_teacher:
-        return redirect('app:teahcer_home')
+        return redirect('app:teacher_home')
     elif request.user.is_authenticated and request.user.is_student:
         return redirect('app:student_home')
     else:
