@@ -6,9 +6,24 @@ Django school is a platform where a student and teacher can connect.
 
 This platform has the following features
 
-1. Students can select their favourite teachers
-2. Teachers can mark students with a "star" for being an exception.
+1. Student Signup
 
+![img](https://i.imgur.com/rkYQXdB.png?1)
+
+
+
+2. Teachers Signup.
+
+![img](https://i.imgur.com/VTvj9CU.png?1)
+
+3. Add Favourite Teachers
+
+![img](https://i.imgur.com/45gKEb8.png?1)
+
+
+4. Mark student "star"
+
+![img](https://i.imgur.com/c1nUiT8.png?1)
 ## Installation
 
 It can be installed on your system with ease. You only need to run the following commands for running it on 
