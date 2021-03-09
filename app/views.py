@@ -22,7 +22,7 @@ def index(request):
         according to the input requests by user.
     """
     if request.user.is_authenticated and request.user.is_teacher:
-        return redirect('app:teahcer_home')
+        return redirect('app:teacher_home')
     elif request.user.is_authenticated and request.user.is_student:
         return redirect('app:student_home')
     else:
@@ -78,6 +78,7 @@ class StudentFilteredListView(ListView):
             context['no_data'] = "No data available"
             return context
  
+@method_decorator([login_required(login_url='app:login'), student_required], name='dispatch')
 class StarStudentListView(ListView):
     """
         Class for listing the exceptional students,starred by teachers.
@@ -99,7 +100,7 @@ class StarStudentListView(ListView):
 
     
 
-
+@method_decorator([login_required(login_url='app:login'), teacher_required], name='dispatch')
 class TeacherHomeListView(ListView):
     """
         Class for listing the all students on teacher's home page.
@@ -197,7 +198,7 @@ def del_user(request, username):
     u.delete()
     return redirect('/') 
 
-@login_required
+@method_decorator([login_required(login_url='app:login'), student_required], name='dispatch')
 def add_favourite(request, pk):
     """
         Function for adding the favourite teacher.
@@ -210,7 +211,7 @@ def add_favourite(request, pk):
         student.teachers.add(teacher)
     return redirect(f'/profile/teacher/{pk}')
 
-@login_required
+@method_decorator([login_required(login_url='app:login'), teacher_required], name='dispatch')
 def add_star(request, pk):
     """
         Function for marking a student exceptional.

@@ -35,7 +35,7 @@ class Teacher(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    about = models.TextField(max_length=2000, null=True)
+    about = models.TextField(max_length=2000, null=True, blank=True)
 
     def get_absolute_url(self):
         return f'/profile/{self.user.username}/{self.user.id}/'
