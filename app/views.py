@@ -57,7 +57,6 @@ class TeacherFilteredListView(ListView):
             context['no_data'] = "No data available"
             return context
  
-@method_decorator([login_required(login_url='app:login'), student_required], name='dispatch')
 class StudentFilteredListView(ListView):
 
     """
@@ -78,7 +77,6 @@ class StudentFilteredListView(ListView):
             context['no_data'] = "No data available"
             return context
  
-@method_decorator([login_required(login_url='app:login'), student_required], name='dispatch')
 class StarStudentListView(ListView):
     """
         Class for listing the exceptional students,starred by teachers.
@@ -198,7 +196,9 @@ def del_user(request, username):
     u.delete()
     return redirect('/') 
 
-@method_decorator([login_required(login_url='app:login'), student_required], name='dispatch')
+
+@student_required
+@login_required
 def add_favourite(request, pk):
     """
         Function for adding the favourite teacher.
@@ -211,7 +211,8 @@ def add_favourite(request, pk):
         student.teachers.add(teacher)
     return redirect(f'/profile/teacher/{pk}')
 
-@method_decorator([login_required(login_url='app:login'), teacher_required], name='dispatch')
+@teacher_required
+@login_required
 def add_star(request, pk):
     """
         Function for marking a student exceptional.

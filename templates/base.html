@@ -18,9 +18,13 @@
 
         {% if request.user.is_student %}
         <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-student' %}">Your Teachers</a>
+        <a class="btn btn-warning navbar-brand ml-5" href="{% url 'graphql' %}">GraphQL</a>
+
         {% elif request.user.is_teacher %}
         <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:data-detail-teacher' %}">Your Students</a>
         <a class="btn btn-warning navbar-brand ml-5" href="{% url 'app:star_students' %}">Exceptional Students</a>
+        <a class="btn btn-warning navbar-brand ml-5" href="{% url 'graphql' %}">GraphQL</a>
+
 
         {% endif %}
 

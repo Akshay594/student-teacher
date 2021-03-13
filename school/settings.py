@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_graphiql_explorer'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +52,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'school.schema.schema',
+    'MIDDLEWARE': [
+    'graphql_jwt.middleware.JSONWebTokenMiddleware',
+],
+
+}
 
 ROOT_URLCONF = 'school.urls'
 
@@ -83,6 +94,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 
 # Password validation
