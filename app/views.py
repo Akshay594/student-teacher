@@ -119,7 +119,7 @@ class StudentRegisterView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('app:student_home')
 
 class TeacherRegisterView(CreateView):
@@ -129,7 +129,7 @@ class TeacherRegisterView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('app:teacher_home')
 
 
